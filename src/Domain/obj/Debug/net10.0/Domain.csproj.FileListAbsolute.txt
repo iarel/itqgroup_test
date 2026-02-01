@@ -1,0 +1,12 @@
+D:\source\test_back\src\Domain\obj\Debug\net10.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\source\test_back\src\Domain\obj\Debug\net10.0\Domain.AssemblyInfoInputs.cache
+D:\source\test_back\src\Domain\obj\Debug\net10.0\Domain.AssemblyInfo.cs
+D:\source\test_back\src\Domain\obj\Debug\net10.0\Domain.csproj.CoreCompileInputs.cache
+D:\source\test_back\src\Domain\bin\Debug\net10.0\Domain.deps.json
+D:\source\test_back\src\Domain\bin\Debug\net10.0\Domain.dll
+D:\source\test_back\src\Domain\bin\Debug\net10.0\Domain.pdb
+D:\source\test_back\src\Domain\obj\Debug\net10.0\Domain.csproj.AssemblyReference.cache
+D:\source\test_back\src\Domain\obj\Debug\net10.0\Domain.dll
+D:\source\test_back\src\Domain\obj\Debug\net10.0\refint\Domain.dll
+D:\source\test_back\src\Domain\obj\Debug\net10.0\Domain.pdb
+D:\source\test_back\src\Domain\obj\Debug\net10.0\ref\Domain.dll
