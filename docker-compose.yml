@@ -1,0 +1,32 @@
+
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: webservice_postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: webservice_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  mongo:
+    image: mongo:6.0
+    container_name: webservice_mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  redis:
+    image: redis:7-alpine
+    container_name: webservice_redis
+    ports:
+      - "6379:6379"
+
+volumes:
+  postgres_data:
+  mongo_data:
