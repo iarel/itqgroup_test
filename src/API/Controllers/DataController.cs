@@ -5,6 +5,7 @@ namespace API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Microsoft.AspNetCore.Authorization.Authorize]
 public class DataController : ControllerBase
 {
     private readonly ItemService _itemService;
@@ -17,7 +18,11 @@ public class DataController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> SaveData([FromBody] List<Dictionary<string, string>> input)
     {
-        await _itemService.SaveDataAsync(input);
+        var result = await _itemService.SaveDataAsync(input);
+        if (result.IsFailure)
+        {
+            return BadRequest(new { error = result.Error });
+        }
         return Ok(new { message = "Data saved successfully" });
     }
 
@@ -25,6 +30,10 @@ public class DataController : ControllerBase
     public async Task<IActionResult> GetData([FromQuery] int? minCode, [FromQuery] int? maxCode, [FromQuery] string? valueContains)
     {
         var result = await _itemService.GetDataAsync(minCode, maxCode, valueContains);
-        return Ok(result);
+        if (result.IsFailure)
+        {
+            return BadRequest(new { error = result.Error });
+        }
+        return Ok(result.Value);
     }
 }

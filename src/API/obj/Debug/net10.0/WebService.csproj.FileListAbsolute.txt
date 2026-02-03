@@ -260,3 +260,13 @@ D:\source\test_back\src\API\obj\Debug\net10.0\swae.build.ex.cache
 D:\source\test_back\src\API\obj\Debug\net10.0\WebService.csproj.Up2Date
 D:\source\test_back\src\API\obj\Debug\net10.0\WebService.genruntimeconfig.cache
 D:\source\test_back\src\API\obj\Debug\net10.0\ref\WebService.dll
+D:\source\test_back\src\API\bin\Debug\net10.0\FluentValidation.dll
+D:\source\test_back\src\API\bin\Debug\net10.0\FluentValidation.DependencyInjectionExtensions.dll
+D:\source\test_back\src\API\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\source\test_back\src\API\bin\Debug\net10.0\Microsoft.IdentityModel.Abstractions.dll
+D:\source\test_back\src\API\bin\Debug\net10.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\source\test_back\src\API\bin\Debug\net10.0\Microsoft.IdentityModel.Logging.dll
+D:\source\test_back\src\API\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.dll
+D:\source\test_back\src\API\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\source\test_back\src\API\bin\Debug\net10.0\Microsoft.IdentityModel.Tokens.dll
+D:\source\test_back\src\API\bin\Debug\net10.0\System.IdentityModel.Tokens.Jwt.dll

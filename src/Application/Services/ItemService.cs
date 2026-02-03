@@ -1,3 +1,5 @@
+using Application.Common.Models;
+using FluentValidation;
 using Application.DTOs;
 using Application.Interfaces;
 using Domain.Entities;
@@ -13,15 +15,23 @@ public class ItemService
 {
     private readonly IItemRepository _repository;
     private readonly ICacheService _cache;
+    private readonly IValidator<List<Dictionary<string, string>>> _validator;
 
-    public ItemService(IItemRepository repository, ICacheService cache)
+    public ItemService(IItemRepository repository, ICacheService cache, IValidator<List<Dictionary<string, string>>> validator)
     {
         _repository = repository;
         _cache = cache;
+        _validator = validator;
     }
 
-    public async Task SaveDataAsync(List<Dictionary<string, string>> input)
+    public async Task<Result> SaveDataAsync(List<Dictionary<string, string>> input)
     {
+        var validationResult = await _validator.ValidateAsync(input);
+        if (!validationResult.IsValid)
+        {
+            return Result.Failure(string.Join(", ", validationResult.Errors.Select(e => e.ErrorMessage)));
+        }
+
         var items = new List<Item>();
         foreach (var dict in input)
         {
@@ -39,9 +49,11 @@ public class ItemService
 
         // Invalidate cache by updating global version
         await _cache.SetStringAsync("GlobalDataVersion", DateTime.UtcNow.Ticks.ToString());
+
+        return Result.Success();
     }
 
-    public async Task<List<ItemDto>> GetDataAsync(int? minCode, int? maxCode, string? valueContains)
+    public async Task<Result<List<ItemDto>>> GetDataAsync(int? minCode, int? maxCode, string? valueContains)
     {
         var version = await _cache.GetStringAsync("GlobalDataVersion") ?? "0";
         var cacheKey = $"data_{version}_{minCode}_{maxCode}_{valueContains}";
@@ -49,7 +61,7 @@ public class ItemService
         var cachedItems = await _cache.GetAsync<List<ItemDto>>(cacheKey);
         if (cachedItems != null)
         {
-            return cachedItems;
+            return Result<List<ItemDto>>.Success(cachedItems);
         }
 
         var items = await _repository.GetAllAsync(minCode, maxCode, valueContains);
@@ -57,6 +69,6 @@ public class ItemService
 
         await _cache.SetAsync(cacheKey, dtos, TimeSpan.FromMinutes(5));
 
-        return dtos;
+        return Result<List<ItemDto>>.Success(dtos);
     }
 }
